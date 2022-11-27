@@ -17,7 +17,7 @@ class HeroListView(TemplateView):
             'object_list': Hero.objects.all()
         }
 
-class HeroView(TemplateView):
+class NotesView(TemplateView):
     template_name = 'notes.html'
     def get_context_data(self, **kwargs):
         return {
