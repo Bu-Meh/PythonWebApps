@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from json import loads
 from pathlib import Path
 
-from photos.models import Hero
+from hero.models import Hero
 
 
 class Command(BaseCommand):
