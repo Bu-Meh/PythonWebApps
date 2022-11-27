@@ -10,14 +10,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 
-class PhotoListView(TemplateView):
+class HeroListView(TemplateView):
     template_name = 'heroes.html'
     def get_context_data(self, **kwargs):
         return {
             'object_list': Hero.objects.all()
         }
 
-class NotesView(TemplateView):
+class HeroView(TemplateView):
     template_name = 'notes.html'
     def get_context_data(self, **kwargs):
         return {
@@ -31,8 +31,8 @@ class CarouselView(TemplateView):
             'object_list': Hero.objects.all()
         }
 
-class PhotoDetailView(TemplateView):
-    template_name = 'photo.html'
+class HeroDetailView(TemplateView):
+    template_name = 'hero.html'
 
     def get_context_data(self, **kwargs):
         i = kwargs['id']
