@@ -4,12 +4,12 @@ from django.test import SimpleTestCase, TestCase
 from .models import Hero
 from django.urls import reverse
 
-class PhotosAppTest(SimpleTestCase):
+class heroAppTest(SimpleTestCase):
 
     def test_django(self):
         self.assertTrue(True)
 
-class PhotoDataTest(TestCase):
+class heroDataTest(TestCase):
     def test_hero(self):
         Hero.objects.create(name = 'Name')
         self.assertTrue(Hero.objects.all())
@@ -24,7 +24,7 @@ class PhotoDataTest(TestCase):
         a.delete()
         self.assertEqual(len(Hero.objects.all()), 0)
 
-class PhotoListViewTest(TestCase):
+class heroListViewTest(TestCase):
     def test_photo_list_view(self):
         self.assertEqual(reverse("hero_list"), "/")
 

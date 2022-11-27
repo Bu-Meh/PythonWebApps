@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from hero.views import PhotoDetailView, PhotoListView, HeroCreateView, HeroDeleteView, HeroUpdateView, AuthorAddView, CarouselView, NotesView
+from hero.views import heroDetailView, heroListView, HeroCreateView, HeroDeleteView, HeroUpdateView, AuthorAddView, CarouselView, heroView
 
 
 urlpatterns = [
@@ -28,8 +28,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     # Photos
-    path('', PhotoListView.as_view(), name='hero_list'),
-    path('<int:id>', PhotoDetailView.as_view(), name='detail_view'),
+    path('', heroListView.as_view(), name='hero_list'),
+    path('<int:id>', heroDetailView.as_view(), name='detail_view'),
     path('add', HeroCreateView.as_view(),  name='add'),
     path('<int:pk>/edit', HeroUpdateView.as_view(),  name='edit'),
     path('<int:pk>/delete', HeroDeleteView.as_view(),  name='delete'),
