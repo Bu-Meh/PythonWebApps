@@ -1,0 +1,15 @@
+{% extends 'theme.html' %}
+{% block content %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="media/images/heros.jpg" class="h-50 w-50" alt="1">
+    </div>
+    {% for hero in object_list %}  
+      <div class="carousel-item">
+        <img src="{{hero.photo.url}}" class="h-50 w-50" alt="m">
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

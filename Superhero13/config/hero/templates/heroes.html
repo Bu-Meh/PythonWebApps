@@ -1,0 +1,21 @@
+{% extends 'theme.html' %}
+
+
+
+{% block content %}
+<div class="container">
+    <div class="row">  
+        {% for hero in object_list %}      
+                <div class="card border-info" style="width: 18rem;">
+                    <img class="card-img-top" src={{ hero.photo.url }} alt="Hero image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ hero.name }}</h5>
+                        <p class="card-text">{{hero.description}}</p>
+                        <a href="{{ hero.pk }}" class="btn btn-info" role="button">{{ hero.name }}</a>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+</div>
+<a href="add" class="btn bg-success text-light m-5">Add Hero</a>
+    {% endblock content %}
