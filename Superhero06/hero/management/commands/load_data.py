@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from json import loads
 from pathlib import Path
 
-from hero.models import Hero
+from hero.models import Superhero
 
 
 class Command(BaseCommand):
@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
 def load_data():
     # Delete the old objects
-    Hero.objects.all().delete()
+    Superhero.objects.all().delete()
 
     # Read the JSON file
     path = Path('hero_objects.json')
@@ -21,8 +21,8 @@ def load_data():
 
     # Create new objects
     for o in objects:
-        Hero.objects.get_or_create(**o)
+        Superhero.objects.get_or_create(**o)
 
     # Show the objects
-    for hero in Hero.objects.all().values():
+    for hero in Superhero.objects.all().values():
         print(hero)

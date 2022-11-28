@@ -2,41 +2,39 @@
 
     <div class="container">
 
-        <a class="navbar-brand text-light" href="/">Superhero App</a>
+        <a class="header" href="/"></a>
 
-        <ul class="navbar-nav text-light ml-auto">
-            <li class="nav-item">
-                <a class="nav-link text-light" href="{% url 'hero_list' %}">Heroes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="{% url 'article_list' %}">Articles</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="{% url 'photo_list' %}">Photos</a>
-            </li>
-
-
-            {% if user.is_authenticated %}
+        <ul class="nav nav-tabs">
 
             <li class="nav-item">
-                <a class="nav-link  text-light " href="{% url 'logout' %}">Hello {{ user.username }}</a>
+                <a class="nav-link text-light" href="{% url 'hero_list' %}">All Heros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  text-light " href="{% url 'logout' %}">Log out</a>
+                {% if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a class="nav-link  text-light " href="{% url 'logout' %}">Hello {{ user.username }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  text-light " href="{% url 'logout' %}">Log out</a>
+                </li>
+
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link  text-light " href="{% url 'login' %}">Log In</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link  text-light " href="{% url 'author_add' %}">Sign Up</a>
+                </li>
+
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link  text-light " href="{% url 'carousel' %}">Carousel</a>
+                </li>
             </li>
-
-            {% else %}
-
-            <li class="nav-item">
-                <a class="nav-link  text-light " href="{% url 'login' %}">Log In</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link  text-light " href="{% url 'signup' %}">Sign Up</a>
-            </li>
-
-            {% endif %}
-
         </ul>
 
     </div>

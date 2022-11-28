@@ -1,6 +1,5 @@
 {% extends 'theme.html' %}
 
-
 {% load crispy_forms_tags %}
 
 
@@ -8,23 +7,22 @@
 {% endblock navbar %}
 
 
-{% block title %}
-Log In
-{% endblock title %}
-
-
 {% block content %}
 
-<p>
-    Login to modify content on the Superhero Tracker App.
-</p>
+<div class="container m-5">
 
-<form method="post" class="m-5">
-    {% csrf_token %}
+    <h2 class="">Log In</h2>
+    <form method="post" class="m-5">
+        {% csrf_token %}
 
-    {{ form|crispy }}
+        {{ form|crispy }}
 
-    <button type="submit" class="btn btn-primary m-5">Log In</button>
-</form>
+        <button type="submit" class="btn btn-success m-5">Log In</button>
+        <p>Don't have an account?</p>
+        <a href="{% url 'author_add' %}">Sign Up instead!</a>
+    </form>
+
+    
+</div>
 
 {% endblock content %}

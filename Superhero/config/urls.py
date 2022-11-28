@@ -1,26 +1,41 @@
+"""config URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.views.generic import RedirectView
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
-from hero.views_accounts import UserUpdateView, UserAddView
+from hero.views import HeroDetailView, HeroListView, HeroCreateView, HeroDeleteView, HeroUpdateView, AuthorAddView, CarouselView, NotesView
+
 
 urlpatterns = [
 
-    # Blog
-    path('', include('blog.urls')),
+    #database
+    path('admin/', admin.site.urls),
+    
+    # Photos
+    path('', HeroListView.as_view(), name='hero_list'),
+    path('<int:id>', HeroDetailView.as_view(), name='detail_view'),
+    path('add', HeroCreateView.as_view(),  name='add'),
+    path('<int:pk>/edit', HeroUpdateView.as_view(),  name='edit'),
+    path('<int:pk>/delete', HeroDeleteView.as_view(),  name='delete'),
+    path('carousel', CarouselView.as_view(), name='carousel'),
 
-    # Hero
-    path('', include('hero.urls')),
-
-    # Photo
-    path('', include('photos.urls')),
-
-    # Login/Logout code
+    #user stuff
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/<int:pk>/', UserUpdateView.as_view(), name='account_edit'),
-    path('accounts/signup/', UserAddView.as_view(), name='signup'),
-
-    # Admin views for users
-    # path('admin/', admin.site.urls),
-    # path('admin/', include('admin.site.urls')),   Don't do this!
-
-]
+    path('author/add/', AuthorAddView.as_view(), name='author_add'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
